@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Explorador de Pasatiempos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hobby-card { transition: all 0.3s ease; }
+        .hobby-card:hover { transform: translateY(-8px); }
+        .icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .icon-filled { fill: currentColor; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+    <div id="app" class="max-w-6xl mx-auto p-6">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">
+                🎨 Tu Explorador de Pasatiempos
+            </h1>
+            <p class="text-gray-600 text-lg">
+                Actividades personalizadas para tu horario: mañanas, noches y fines de semana
+            </p>
+            <div class="flex items-center justify-center gap-4 mt-4 text-sm text-gray-500">
+                <div class="flex items-center gap-1">
+                    <svg class="icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>L-V: Mañanas y después de 9PM</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <svg class="icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg>
+                    <span>Fines de semana: Tiempo extendido</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Grid -->
+        <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Cocina -->
+            <div class="hobby-card bg-white rounded-xl shadow-lg cursor-pointer p-6" onclick="showCategory('cocina')">
+                <div class="bg-orange-500 text-white rounded-lg p-4 mb-4 flex items-center justify-center">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7.13Z"></path><line x1="6" y1="2" x2="18" y2="2"></line><line x1="12" y1="2" x2="12" y2="7"></line></svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Cocina Creativa</h3>
+                <p class="text-gray-600 text-sm mb-4">3 actividades disponibles</p>
+                <div class="flex items-center text-blue-600 font-medium">
+                    <span>Explorar</span>
+                    <svg class="icon ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>
+                </div>
+            </div>
+
+            <!-- Programación -->
+            <div class="hobby-card bg-white rounded-xl shadow-lg cursor-pointer p-6" onclick="showCategory('programacion')">
+                <div class="bg-blue-500 text-white rounded-lg p-4 mb-4 flex items-center justify-center">
+                    <svg class="icon" viewBox="0 0 24 24"><polyline points="16,18 22,12 16,6"></polyline><polyline points="8,6 2,12 8,18"></polyline></svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Programación Creativa</h3>
+                <p class="text-gray-600 text-sm mb-4">3 actividades disponibles</p>
+                <div class="flex items-center text-blue-600 font-medium">
+                    <span>Explorar</span>
+                    <svg class="icon ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>
+                </div>
+            </div>
+
+            <!-- Literatura -->
+            <div class="hobby-card bg-white rounded-xl shadow-lg cursor-pointer p-6" onclick="showCategory('literatura')">
+                <div class="bg-green-500 text-white rounded-lg p-4 mb-4 flex items-center justify-center">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Literatura & Filosofía</h3>
+                <p class="text-gray-600 text-sm mb-4">3 actividades disponibles</p>
+                <div class="flex items-center text-blue-600 font-medium">
+                    <span>Explorar</span>
+                    <svg class="icon ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>
+                </div>
+            </div>
+
+            <!-- Arte -->
+            <div class="hobby-card bg-white rounded-xl shadow-lg cursor-pointer p-6" onclick="showCategory('arte')">
+                <div class="bg-purple-500 text-white rounded-lg p-4 mb-4 flex items-center justify-center">
+                    <svg class="icon" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Arte & Diseño</h3>
+                <p class="text-gray-600 text-sm mb-4">3 actividades disponibles</p>
+                <div class="flex items-center text-blue-600 font-medium">
+                    <span>Explorar</span>
+                    <svg class="icon ml-1 w-4 h-4"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Details (Hidden by default) -->
+        <div id="category-details" class="hidden">
+            <button onclick="showCategories()" class="mb-6 text-blue-600 hover:text-blue-800 flex items-center gap-2">
+                ← Volver a categorías
+            </button>
+            <div id="category-content"></div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites" class="mt-8 bg-yellow-50 rounded-xl p-6 hidden">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                <svg class="icon w-5 h-5 text-yellow-500 icon-filled"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+                Tus Favoritos (<span id="fav-count">0</span>)
+            </h3>
+            <p class="text-gray-600 text-sm">
+                ¡Has marcado <span id="fav-count-text">0</span> actividades como favoritas! 
+                Considera empezar con una que se adapte mejor a tu horario actual.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const hobbies = {
+            cocina: {
+                title: "Cocina Creativa",
+                icon: "🍳",
+                activities: [
+                    {
+                        name: "Cocina Molecular",
+                        time: "2-3 horas/fin de semana",
+                        difficulty: "Intermedio",
+                        cost: "$200-500 MXN inicial",
+                        description: "Experimenta con texturas y sabores usando técnicas científicas",
+                        resources: ["Kit básico de esferificación", "Recetas de Grant Achatz", "Videos de Ferran Adrià"]
+                    },
+                    {
+                        name: "Fermentación Casera",
+                        time: "30 min/día",
+                        difficulty: "Principiante",
+                        cost: "$100-300 MXN",
+                        description: "Kombucha, kimchi, pan madre - perfectos para rutina matutina",
+                        resources: ["Frascos de vidrio", "Cultivos madre", "Libro: El Arte de la Fermentación"]
+                    },
+                    {
+                        name: "Cocina de Autor Mexicana",
+                        time: "1-2 horas/noche",
+                        difficulty: "Intermedio",
+                        cost: "$300-600 MXN/mes",
+                        description: "Reinventa platillos tradicionales con técnicas modernas",
+                        resources: ["Libros de Enrique Olvera", "Ingredientes especializados", "Técnicas de emplatado"]
+                    }
+                ]
+            },
+            programacion: {
+                title: "Programación Creativa",
+                icon: "💻",
+                activities: [
+                    {
+                        name: "Arte Generativo",
+                        time: "1-2 horas/noche",
+                        difficulty: "Intermedio",
+                        cost: "Gratis - $50 USD/mes",
+                        description: "Crea arte visual usando código (Processing, p5.js)",
+                        resources: ["Processing IDE", "Libro: Generative Design", "OpenProcessing community"]
+                    },
+                    {
+                        name: "Desarrollo de Juegos Indie",
+                        time: "3-4 horas/fin de semana",
+                        difficulty: "Intermedio-Avanzado",
+                        cost: "Gratis - $100 USD",
+                        description: "Crea pequeños juegos usando Godot o Unity",
+                        resources: ["Godot Engine", "itch.io para publicar", "Tutoriales de Brackeys"]
+                    },
+                    {
+                        name: "Automatización Doméstica",
+                        time: "2-3 horas/fin de semana",
+                        difficulty: "Principiante-Intermedio",
+                        cost: "$500-2000 MXN",
+                        description: "Raspberry Pi y sensores para automatizar tu hogar",
+                        resources: ["Raspberry Pi kit", "Home Assistant", "Sensores básicos"]
+                    }
+                ]
+            },
+            literatura: {
+                title: "Literatura & Filosofía",
+                icon: "📚",
+                activities: [
+                    {
+                        name: "Club de Lectura Virtual",
+                        time: "1 hora/noche + discusiones",
+                        difficulty: "Principiante",
+                        cost: "$200-500 MXN/mes",
+                        description: "Únete o crea grupos para discutir existencialismo y literatura",
+                        resources: ["Goodreads groups", "Discord literario", "Biblioteca digital"]
+                    },
+                    {
+                        name: "Escritura Creativa",
+                        time: "30-45 min/mañana",
+                        difficulty: "Principiante",
+                        cost: "Gratis - $300 MXN",
+                        description: "Microrrelatos inspirados en Borges, Cortázar y Kafka",
+                        resources: ["Cuaderno o app de notas", "Prompts de escritura", "Talleres online"]
+                    },
+                    {
+                        name: "Análisis Literario en Blog",
+                        time: "2-3 horas/fin de semana",
+                        difficulty: "Intermedio",
+                        cost: "Gratis - $200 MXN/mes",
+                        description: "Crea contenido analizando obras existencialistas",
+                        resources: ["Plataforma de blogging", "Herramientas de análisis", "Comunidad literaria"]
+                    }
+                ]
+            },
+            arte: {
+                title: "Arte & Diseño",
+                icon: "🎨",
+                activities: [
+                    {
+                        name: "Ilustración Digital Avanzada",
+                        time: "1-2 horas/noche",
+                        difficulty: "Intermedio",
+                        cost: "$200-1000 USD",
+                        description: "Lleva tus sketches al siguiente nivel con Procreate o Photoshop",
+                        resources: ["Tablet gráfica", "Software profesional", "Cursos online especializados"]
+                    },
+                    {
+                        name: "Urban Sketching",
+                        time: "1-2 horas/mañana o fin de semana",
+                        difficulty: "Principiante-Intermedio",
+                        cost: "$300-800 MXN",
+                        description: "Dibuja la arquitectura y vida de Monterrey",
+                        resources: ["Cuaderno resistente", "Kit de lápices", "Comunidad local de sketchers"]
+                    },
+                    {
+                        name: "Arte Conceptual Literario",
+                        time: "2-3 horas/fin de semana",
+                        difficulty: "Intermedio",
+                        cost: "$500-1500 MXN",
+                        description: "Ilustra escenas de Kafka, Camus y autores latinoamericanos",
+                        resources: ["Materiales mixtos", "Referencias fotográficas", "Portfolio digital"]
+                    }
+                ]
+            }
+        };
+
+        let favorites = [];
+
+        function saveFavorites() {
+            // En lugar de localStorage, mantenemos en memoria durante la sesión
+            updateFavoritesDisplay();
+        }
+
+        function loadFavorites() {
+            updateFavoritesDisplay();
+        }
+
+        function toggleFavorite(category, activityName) {
+            const id = `${category}-${activityName}`;
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFavorites();
+        }
+
+        function isFavorite(category, activityName) {
+            return favorites.includes(`${category}-${activityName}`);
+        }
+
+        function updateFavoritesDisplay() {
+            const favSection = document.getElementById('favorites');
+            const favCount = document.getElementById('fav-count');
+            const favCountText = document.getElementById('fav-count-text');
+            
+            if (favorites.length > 0) {
+                favSection.classList.remove('hidden');
+                favCount.textContent = favorites.length;
+                favCountText.textContent = favorites.length;
+            } else {
+                favSection.classList.add('hidden');
+            }
+        }
+
+        function showCategories() {
+            document.getElementById('categories').classList.remove('hidden');
+            document.getElementById('category-details').classList.add('hidden');
+        }
+
+        function showCategory(categoryKey) {
+            const category = hobbies[categoryKey];
+            document.getElementById('categories').classList.add('hidden');
+            document.getElementById('category-details').classList.remove('hidden');
+            
+            const content = document.getElementById('category-content');
+            content.innerHTML = `
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-3">
+                        <span class="text-4xl">${category.icon}</span>
+                        ${category.title}
+                    </h2>
+                    <p class="text-gray-600">
+                        Actividades diseñadas para tu horario y nivel de experiencia
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    ${category.activities.map((activity, index) => `
+                        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-gray-800">
+                                    ${activity.name}
+                                </h3>
+                                <button
+                                    onclick="toggleFavorite('${categoryKey}', '${activity.name}')"
+                                    class="p-2 rounded-full transition-all ${
+                                        isFavorite(categoryKey, activity.name)
+                                            ? 'text-yellow-500 bg-yellow-50'
+                                            : 'text-gray-400 hover:text-yellow-500'
+                                    }"
+                                >
+                                    <svg class="w-5 h-5 ${isFavorite(categoryKey, activity.name) ? 'icon-filled' : ''}">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                ${activity.description}
+                            </p>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <svg class="w-4 h-4 text-blue-500 icon">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                    <span class="font-medium">Tiempo:</span>
+                                    <span class="text-gray-600">${activity.time}</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <svg class="w-4 h-4 text-green-500 icon">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                    <span class="font-medium">Costo:</span>
+                                    <span class="text-gray-600">${activity.cost}</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm">
+                                    <span class="w-4 h-4 text-purple-500 flex items-center justify-center font-bold text-xs">N</span>
+                                    <span class="font-medium">Nivel:</span>
+                                    <span class="text-gray-600">${activity.difficulty}</span>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Para empezar necesitas:</h4>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    ${activity.resources.map(resource => `
+                                        <li class="flex items-center gap-2">
+                                            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                                            ${resource}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFavorites();
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker registrado'))
+            .catch(error => console.log('Error al registrar Service Worker', error));
+        }
+
+    </script>
+</body>
+</html>
