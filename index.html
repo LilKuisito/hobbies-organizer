@@ -1,5 +1,16 @@
-<script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=mis-pasatiempos.html">
+    <title>Redirigiendo...</title>
+</head>
+<body>
+    <p>Si no eres redirigido automáticamente, haz <a href="mis-pasatiempos.html">clic aquí</a>.</p>
+</body>
+</html>
 <link rel="manifest" href="manifest.json">
+<script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js')
     .then(() => console.log('Service Worker registrado'))
